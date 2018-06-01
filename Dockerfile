@@ -3,6 +3,8 @@
 # Please check your docker confirguration before run. 
 # Ex. to run this project: 
 #    docker run -t -d -p 8080:8080 -p 8100:8100 -p 8089:8089 tehnari/oidcfed-swamid-federation-docker:0.0.1 /bin/bash
+# For local build see ex. below:
+# docker build --rm -t tehnari/oidcfed-swamid-federation-docker:0.0.1 .
 #
 FROM opensuse/leap
 LABEL Author="Constantin Sclifos sclifcon@ase.md"
@@ -12,7 +14,7 @@ EXPOSE 8080 8100 8089
 WORKDIR /app
 ADD . /app
 
-RUN zypper -v ref && zypper -n in -l vim  nano git curl wget python3 python3-pip screen net-tools&& \
+RUN zypper -v ref && zypper -n in -l vim  nano git curl wget python3 python3-pip screen net-tools net-tools-deprecated && \
     whereis pip3
 
 RUN python3 -m pip install --upgrade pip
@@ -20,5 +22,11 @@ RUN python3 -m pip install --upgrade pip
 COPY ./cleanup-oidc-swamid-federation.sh /app/cleanup-oidc-swamid-federation.sh
 COPY ./setup-oidc-swamid-federation.sh /app/setup-oidc-swamid-federation.sh
 RUN chmod 777 /app/*.sh
-RUN screen -A -m -d -S /bin/bash /app/setup-oidc-swamid-federation.sh &
-RUN ss -tulpn | grep 80
+RUN cd /app
+RUN screen -A -m -d -S bash /app/setup-oidc-swamid-federation.sh &
+RUN echo "Sleep for 60 seconds..." 
+RUN sleep 60s
+RUN echo "All operations should be finished. If not launch manually setup-oidc-swamid-federation.sh."
+RUN echo "And don't forget before to start cleanup ;) "
+#RUN ss -tulpn | grep 80
+#RUN netstat -tulpnv | grep 80

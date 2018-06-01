@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
-
+mkdir -p /app
+cd /app
+./cleanup-oidc-swamid-federation.sh
 git clone https://github.com/rohe/oidc-swamid-federation.git
 cd oidc-swamid-federation
-python3.5 -mvenv venv
+python3-mvenv venv
 . venv/bin/activate
 pip install --no-cache-dir oidcop oidcrp fedoidcendpoint fedoidcrp atomicwrites
 ./create_fo_bundle.py
@@ -20,10 +22,10 @@ cd ../MDSS
 ./enroll.py RP OP
 sleep 1
 cd ../RP
-./rp.py -t -k conf&
+./rp.py -t -k conf & 
 sleep 1
 cd ../OP
-./server.py -t -k conf&
+./server.py -t -k conf & 
 sleep 2
 cd ../MDSS
 ./metadata_importer.py
