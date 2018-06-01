@@ -2,7 +2,7 @@ version: '2.1'
 
 services:
   oidc-swamid-federation-docker:
-    image: oidc-swamid-federation-docker
+    image: tehnari/oidc-swamid-federation-docker
     build:
       context: .
       dockerfile: Dockerfile

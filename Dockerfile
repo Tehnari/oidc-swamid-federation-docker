@@ -23,43 +23,15 @@ COPY ./cleanup-oidc-swamid-federation.sh /app/cleanup-oidc-swamid-federation.sh
 COPY ./setup-oidc-swamid-federation.sh /app/setup-oidc-swamid-federation.sh
 RUN chmod 777 /app/*.sh
 RUN cd /app 
-
-# && \
-# ./cleanup-oidc-swamid-federation.sh  && \
-# git clone https://github.com/rohe/oidc-swamid-federation.git && \
-# cd oidc-swamid-federation 
-# RUN python3 -mvenv venv
-# RUN . venv/bin/activate 
-# RUN pip3 install --no-cache-dir oidcop oidcrp fedoidcendpoint fedoidcrp atomicwrites 
-# RUN ./create_fo_bundle.py 
-# sleep 1 && \
-# cd MDSS && ./create_sign_seq.py && \
-# sleep 1 && cd ../OP && \
-# ./enrollment_setup.py && \
-# sleep 1 && cd ../RP && \
-# ./enrollment_setup.py && \
-# sleep 2 && cd ../MDSS && \
-# ./enroll.py RP OP && \
-# sleep 1 && cd ../RP && \
-# ./rp.py -t -k conf &  && \
-# sleep 1 && cd ../OP && \
-# ./server.py -t -k conf &  && \
-# sleep 2 && cd ../MDSS && \
-# ./metadata_importer.py && \
-# sleep 2 && ./processor.py && \
-# sleep 2 && ./signing_service.py && sleep 2 
-# CMD ./mdss.py -t config && \
-# sleep 5  && bash
-
-    #RUN screen -A -m -d -S bash /app/setup-oidc-swamid-federation.sh &
+#RUN screen -A -m -d -S bash /app/setup-oidc-swamid-federation.sh &
 #CMD ["nohup", "/app/setup-oidc-swamid-federation.sh > /app/setup-output.txt 2>&1 &"] 
 #ENTRYPOINT nohup /app/setup-oidc-swamid-federation.sh  > /app/setup-output.txt 2>&1 &
 #CMD nohup /app/setup-oidc-swamid-federation.sh  > /app/setup-output.txt 2>&1 & && bash
 #ENTRYPOINT ["nohup", "/app/setup-oidc-swamid-federation.sh > /app/setup-output.txt 2>&1 &"] 
 #CMD ["-c"]
 
-RUN chmod +x ./entrypoint.sh
-CMD [ "/bin/bash" , "./entrypoint.sh"] 
+#RUN chmod +x ./entrypoint.sh
+#CMD [ "/bin/bash" , "./entrypoint.sh"] 
 #echo "Sleep for 60 seconds..." && sleep 60s && \
 # echo "All operations should be finished. If not launch manually setup-oidc-swamid-federation.sh." && \
 # echo "And don't forget before to start cleanup ;) "
