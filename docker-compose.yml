@@ -1,0 +1,12 @@
+version: '2.1'
+
+services:
+  oidc-swamid-federation-docker:
+    image: oidc-swamid-federation-docker
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+      - 8089:8089      
+    command: /app/entrypoint.sh  
