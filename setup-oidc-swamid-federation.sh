@@ -4,9 +4,9 @@ cd /app
 ./cleanup-oidc-swamid-federation.sh
 git clone https://github.com/rohe/oidc-swamid-federation.git
 cd oidc-swamid-federation
-python3-mvenv venv
+python3 -mvenv venv
 . venv/bin/activate
-pip install --no-cache-dir oidcop oidcrp fedoidcendpoint fedoidcrp atomicwrites
+pip3 install --no-cache-dir oidcop oidcrp fedoidcendpoint fedoidcrp atomicwrites
 ./create_fo_bundle.py
 sleep 1
 cd MDSS
