@@ -24,10 +24,11 @@ COPY ./setup-oidc-swamid-federation.sh /app/setup-oidc-swamid-federation.sh
 RUN chmod 777 /app/*.sh
 RUN cd /app
 #RUN screen -A -m -d -S bash /app/setup-oidc-swamid-federation.sh &
-CMD nohup /app/setup-oidc-swamid-federation.sh &
-RUN echo "Sleep for 60 seconds..." 
-RUN sleep 60s
-RUN echo "All operations should be finished. If not launch manually setup-oidc-swamid-federation.sh."
-RUN echo "And don't forget before to start cleanup ;) "
+#CMD ["nohup", "/app/setup-oidc-swamid-federation.sh > /app/setup-output.txt 2>&1 &"] 
+#ENTRYPOINT nohup /app/setup-oidc-swamid-federation.sh  > /app/setup-output.txt 2>&1 &
+ENTRYPOINT ["nohup", "/app/setup-oidc-swamid-federation.sh > /app/setup-output.txt 2>&1 &"] 
+#echo "Sleep for 60 seconds..." && sleep 60s && \
+# echo "All operations should be finished. If not launch manually setup-oidc-swamid-federation.sh." && \
+# echo "And don't forget before to start cleanup ;) "
 #RUN ss -tulpn | grep 80
 #RUN netstat -tulpnv | grep 80
