@@ -24,7 +24,7 @@ COPY ./setup-oidc-swamid-federation.sh /app/setup-oidc-swamid-federation.sh
 RUN chmod 777 /app/*.sh
 RUN cd /app
 #RUN screen -A -m -d -S bash /app/setup-oidc-swamid-federation.sh &
-CMD /app/setup-oidc-swamid-federation.sh
+CMD nohup /app/setup-oidc-swamid-federation.sh &
 #RUN echo "Sleep for 60 seconds..." 
 #RUN sleep 60s
 #RUN echo "All operations should be finished. If not launch manually setup-oidc-swamid-federation.sh."
