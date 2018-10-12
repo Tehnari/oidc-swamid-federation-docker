@@ -20,9 +20,11 @@ RUN zypper -v ref && zypper -n in -l vim  nano git curl wget python3 python3-pip
 RUN python3 -m pip install --upgrade pip
 
 COPY ./cleanup-oidc-swamid-federation.sh /app/cleanup-oidc-swamid-federation.sh
-COPY ./setup-oidc-swamid-federation.sh /app/setup-oidc-swamid-federation.sh
+#COPY ./setup-oidc-swamid-federation.sh /app/setup-oidc-swamid-federation.sh   # Disabled, not working at this moment. Have some depency issue.
+COPY ./setup-oidc-swamid-federation-v2.sh /app/setup-oidc-swamid-federation-v2.sh
 RUN chmod 777 /app/*.sh
 RUN cd /app 
+
 #RUN screen -A -m -d -S bash /app/setup-oidc-swamid-federation.sh &
 #CMD ["nohup", "/app/setup-oidc-swamid-federation.sh > /app/setup-output.txt 2>&1 &"] 
 #ENTRYPOINT nohup /app/setup-oidc-swamid-federation.sh  > /app/setup-output.txt 2>&1 &
