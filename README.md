@@ -1,3 +1,6 @@
+Please note that this activity has been discontinued, this repository is currently unmaintained and it is still available only for historical reference
+----
+
 # oidc-swamid-federation-docker
 This repository is test to create a docker for oidc-swamid-federation.
 
